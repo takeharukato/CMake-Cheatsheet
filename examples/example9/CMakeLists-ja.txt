@@ -5,11 +5,11 @@ cmake_minimum_required (VERSION 2.9)
 project (HelloProject)
 
 set(fooinclude "/usr/local/include"
-        CACHE PATH "fooヘッダの配置位置")
+        CACHE PATH "foo ヘッダの配置位置")
 set(foolib "/usr/local/lib/foo.lib"
-        CACHE FILEPATH "foo.libの配置位置")
+        CACHE FILEPATH "foo.lib の配置位置")
 set(foodll "/usr/local/lib/foo.dll"
-        CACHE FILEPATH "foo.dllの配置位置")
+        CACHE FILEPATH "foo.dll の配置位置")
 
 include_directories(${fooinclude})
 

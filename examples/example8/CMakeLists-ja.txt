@@ -6,9 +6,9 @@ project (HelloProject)
 
 
 set(fooinclude "/usr/local/include"
-        CACHE PATH "fooヘッダの配置位置")
+        CACHE PATH "foo ヘッダの配置位置")
 set(foolib "/usr/local/lib/foo.a"
-        CACHE FILEPATH "foo.aの配置位置")
+        CACHE FILEPATH "foo.a の配置位置")
 
 include_directories(${fooinclude})
 

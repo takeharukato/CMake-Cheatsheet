@@ -97,18 +97,17 @@ pdfkeywords={クロスプラットフォーム開発, オープンソース, CMa
 
 %% The document and the CMake examples are available at  \url{https://github.com/mortennobel/CMake-Cheatsheet}. 
   
-  このチートシートは、CMakeがどのように機能し、ソフトウェアプロジェクトを構成するためにどう使用するのかを説明します。
+このチートシートは, CMakeがどのように機能し, ソフトウェアプロジェクトを構成するためにどう使用するのかを説明します。
   
-  ドキュメントとCMakeの例は、\url{https://github.com/mortennobel/CMake-Cheatsheet}から入手できます。
+ドキュメントとCMakeの例は, \url{https://github.com/mortennobel/CMake-Cheatsheet}から入手できます\footnote{日本語版は, \url{https://github.com/takeharukato/CMake-Cheatsheet}から入手できます。}。
  
-
 %\sectiontitle{CMake - Creating a simple C++ project}
   \sectiontitle{CMake-単純なC ++プロジェクトの作成}
   
 %% CMake is a tool for configuring how a cross-platform source code project should be built on a given platform. 
 
 %% A small project could be organized like this: 
-CMakeは、クロスプラットフォームのソースコードプロジェクトを所与のプラットフォームに対して構築する方法を設定するためのツールです。
+CMakeは, クロスプラットフォームのソースコードプロジェクトを所与のプラットフォームに対して構築する方法を設定するためのツールです。
 
 小さなプロジェクトは次のように構成されるでしょう。
 
@@ -131,7 +130,7 @@ src/foo.hpp
 
 %% Running CMake will not create the final executable, but instead, it will generate project files for Visual Studio, XCode or makefiles. Use these tools to build the project.
 
-このプロジェクトには、srcディレクトリにある2つのソースファイルと
+このプロジェクトには, srcディレクトリにある2つのソースファイルと
 同じディレクトリのincludeディレクトリ中にある1つのヘッダーが含まれています。
 
 このプロジェクトでCMakeを実行ためには, バイナリディレクトリが必要です。
@@ -139,13 +138,13 @@ src/foo.hpp
 てのファイルが含まれるため, バイナリディレクトリを新規に作成すること
 をお勧めします。 
 
-問題が発生した場合は、バイナリディレクトリを削除し, 最初からやり直すこ
+問題が発生した場合は, バイナリディレクトリを削除し, 最初からやり直すこ
 とが可能です。
 
 CMakeを実行しても最終的な実行可能ファイルは作成されません, その代
-わりに, Visual Studio、XCode、またはmakefileのプロジェクトファイル
-を生成します。プロジェクトを構築には, これらのツール(Visual Studio、
-XCode、または、make)を使用します。 
+わりに, Visual Studio, XCode, またはmakefileのプロジェクトファイル
+を生成します。プロジェクトを構築には, これらのツール(Visual Studio, 
+XCode, または, make)を使用します。 
 
 \sectiontitle{CMakeLists.txtを理解する}
 
@@ -164,8 +163,8 @@ CMakeを用いてプロジェクトファイルを生成するために,
 
 %% First, the minimum version of CMake is defined. Then the project name is defined using the command \codeword{project()}. A project can contain multiple targets (either executables or libraries). This project defines a single executable target called \codeword{Hello}, which is created by compiling and linking the two source files \codeword{main.cpp} and \codeword{foo.cpp} files.
 
-まず、使用するCMakeの最小バージョンを定義します。
-次に、プロジェクト名をコマンド\codeword{project()}を使用して定義します。
+まず, 使用するCMakeの最小バージョンを定義します。
+次に, プロジェクト名をコマンド\codeword{project()}を使用して定義します。
 
 プロジェクトには複数のターゲット(実行可能ファイルまたはライブラリ)を含
 めることができます。
@@ -180,13 +179,13 @@ CMakeを用いてプロジェクトファイルを生成するために,
 %in the same located as the source file, the compiler will not have
 %any problems finding the file. 
 
-2つのソースファイルをコンパイルする際に、コンパイラはヘッダーファイル\codeword{foo.h}を検索し
-ます。
+2つのソースファイルをコンパイルする際に, コンパイラはヘッダーファイル
+\codeword{foo.h}を検索します。 
 
 両方のソースファイルが\codeword{#include "foo.hpp"}を使用しているため, 両方のソー
 スファイルは, \codeword{foo.h}に依存しています。
 
-この場合, ファイルはソースファイルと同じ場所にあるため、コンパイラーがヘッダーファ
+この場合, ファイルはソースファイルと同じ場所にあるため, コンパイラーがヘッダーファ
 イルの検索時に問題を引き起こすことはありません。
 
 \sectiontitle{CMakeスクリプト言語}
@@ -248,10 +247,9 @@ CMakeスクリプトにも変数があります。変数は, CMake, または, C
 %% CMake allows the end user (who runs CMake) to modify some values of some variables.  This is usually used to defined properties of the build such as locations of files, machine architecture, and string values.
 
 （CMakeを実行する）エンドユーザーは, 変数の値を変更することができます。
-通常この機能は, ファイルの場所、マシンアーキテクチャ、文字列値など、構築に
+通常この機能は, ファイルの場所, マシンアーキテクチャ, 文字列値など, 構築に
 関する定義済みプロパティを変更するための変数の値を変更するために使用さ
 れます。
-
 
 %% The command \codeword{set(<variable> <value> CACHE <type>
 %% <docstring>)} set the variable to the default value - but allows
@@ -263,11 +261,11 @@ CMakeスクリプトにも変数があります。変数は, CMake, または, C
 型は次のいずれかである必要があります:
 
 \begin{itemize}  
-\item FILEPATH = ファイル選択ダイアログ.
-\item PATH     = ディレクトリ選択ダイアログ.
-\item STRING   = 任意の文字列.
-\item BOOL     = ブール値を表す ON/OFF checkbox.
-\item INTERNAL = GUI エントリなし (永続変数として使用).
+\item FILEPATH = ファイル選択ダイアログ。
+\item PATH     = ディレクトリ選択ダイアログ。
+\item STRING   = 任意の文字列。
+\item BOOL     = ブール値を表す ON/OFF チェックボックス。
+\item INTERNAL = GUI エントリなし (永続変数として使用)。
 \end{itemize}
 
 %In the following example, the user can configure if "Hello" or an
@@ -275,17 +273,18 @@ CMakeスクリプトにも変数があります。変数は, CMake, または, C
 %variables hello and other\_msg. 
 以下の例では, ``Hello''または, 設定用の変数 hello やother\_msgの内容に
 基づく代替文字列を表示するようにユーザが設定できるようにします。
+
 \lstinputlisting[language=bash]{examples/example5/CMakeLists-ja.txt}
 
 %During configuration of the project, the CMake user gets prompted with the exposed options.
-プロジェクトの設定時に, CMakeは, 公開オプションをユーザに問い合わせま
+プロジェクトの設定時に, CMakeは公開オプションをユーザに問い合わせま
 す。
 
 \includegraphics[width=\columnwidth]{variable-options}
 
 %% The values that the CMake user enters will be saved in the text file \codeword{CMakeCache.txt} as key-value pairs:
 CMakeユーザが入力した値は, テキストファイル \codeword{CMakeCache.txt}
-にキーと値の組(key-value pair)として保存されます:
+にキーと値の組({\em key-value pair})として保存されます:
 \begin{lstlisting}[language=bash]
 // ....
 //helloを表示
@@ -412,35 +411,35 @@ someexe/res.txt
 %% .lib on Windows and .a on most other platforms.  
 
 静的ライブラリーのセットアップは最も単純です。
-これを使用するには、コンパイラーがヘッダーファイルの場所を知っている必
-要があり、リンカーは実際のライブラリの配置位置を知っている必要があります。
+これを使用するには, コンパイラーがヘッダーファイルの場所を知っている必
+要があり, リンカーは実際のライブラリの配置位置を知っている必要があります。
 
-外部ライブラリがプロジェクトと一緒に配布されない限り、通常、それらの場
-所を知ることはできません - このため、CMakeユーザーが場所を変更できるキャッ
+外部ライブラリがプロジェクトと一緒に配布されない限り, 通常, それらの場
+所を知ることはできません - このため, CMakeユーザーが場所を変更できるキャッ
 シュされた変数を使用するのが一般的です。
-静的ライブラリには、Windowsでは.lib、その他のほとんどのプラットフォー
+静的ライブラリには, Windowsでは.lib, その他のほとんどのプラットフォー
 ムでは.aで終わるファイルです。
 
 \lstinputlisting[language=bash]{examples/example8/CMakeLists-ja.txt}
 
 %% Dynamically linked libraries work similar to statical linked libraries. On Windows, it is still needed to link to a library at compile time, but the actual linking to the DLL happens at compile time. The executable file needs to be able to find the DLL file in the runtime linkers search path. If the DLL is not a system library, an easy solution is to copy the DLL next to the executable. Working with DLL often requires platform specific actions, which CMake support using the built-in variables \codeword{WIN32}, \codeword{APPLE}, \codeword{UNIX}.
 
-動的にリンクされたライブラリは、静的にリンクされたライブラリと同様に機
+動的にリンクされたライブラリは, 静的にリンクされたライブラリと同様に機
 能します。
-Windowsでは、コンパイル時にライブラリをリンクする必要がありますが、DLL
+Windowsでは, コンパイル時にライブラリをリンクする必要がありますが, DLL
 への実際のリンクは実行時に行われます\footnote{訳注: 原文は, ``On
   Windows, it is still needed to link to a library at compile time,
   but the actual linking to the DLL happens at compile
-  time. ''(「Windowsでは、コンパイル時にライブラリにリンクする必要があ
-    りますが、DLLへの実際のリンクはコンパイル時に行われます。」)ですが,
+  time. ''(「Windowsでは, コンパイル時にライブラリにリンクする必要があ
+    りますが, DLLへの実際のリンクはコンパイル時に行われます。」)ですが,
   ``the actual linking to the DLL happens at runtime.''(「DLLへの実際のリ
   ンクは実行時に行われます。」)の誤記と思われます。}。
-実行可能ファイルは、実行時リンカーの検索パスからDLLファイルを検索でき
+実行可能ファイルは, 実行時リンカーの検索パスからDLLファイルを検索でき
 る必要があります。
-DLLがシステムライブラリでない場合、簡単な解決策はDLLを実行可能ファイル
+DLLがシステムライブラリでない場合, 簡単な解決策はDLLを実行可能ファイル
 の隣にコピーすることです。
-多くの場合、DLLの操作にはプラットフォーム固有の操作が必要になります。
-CMakeは, 組み込み変数\codeword {WIN32}、\codeword{APPLE}、
+多くの場合, DLLの操作にはプラットフォーム固有の操作が必要になります。
+CMakeは, 組み込み変数\codeword {WIN32}, \codeword{APPLE}, 
 \codeword{UNIX}によりこれらの操作を支援します。
 
 \lstinputlisting[language=bash]{examples/example9/CMakeLists-ja.txt}
@@ -453,9 +452,9 @@ CMakeは, 組み込み変数\codeword {WIN32}、\codeword{APPLE}、
 %% \codeword{find_package()}. However, this feature works best on
 %% macOS and Linux.
 
-CMakeには、\codeword{find_package()}コマンドを使用して、ライブラリを
+CMakeには, \codeword{find_package()}コマンドを使用して, ライブラリを
 （推奨されるいくつかの場所に基づいて）自動的に検索する機能も含まれてい
-ます。 ただし、この機能はmacOSおよびLinuxで最も適切に機能します。
+ます。 ただし, この機能はmacOSおよびLinuxで最も適切に機能します。
 
 \url{https://cmake.org/Wiki/CMake:How_To_Find_Libraries}.
 
@@ -526,16 +525,16 @@ int main(){
 
 \footnotesize{
 %Created by Morten Nobel-Jørgensen, mnob@itu.dk, ITU, 2017\\ 
-Morten Nobel-Jørgensen(mnob@itu.dk, ITU, 2017)により執筆されました。\\ 
+Morten Nobel-Jørgensen(mnob@itu.dk, ITU, 2017)により執筆されました\footnote{日本語訳: Takeharu KATO, 2020}。\\ 
 %Released under the MIT license. \\
-MIT licenseによりリリースされています. \\
+MIT licenseによりリリースされています。\\
 
 %Latex template by John Smith, 2015\\
-本文書で使用されている{\LaTeX} のテンプレートは, 2015年にJohn Smithによるものです.\\ 
+本文書で使用されている{\LaTeX} のテンプレートは, 2015年, John Smithによるものです。\\ 
 \url{http://johnsmith.com/}\\
 				
 %Released under the MIT license.
-MIT licenseによりリリースされています. 
+MIT licenseによりリリースされています。 
 }
 
 %----------------------------------------------------------------------------------------

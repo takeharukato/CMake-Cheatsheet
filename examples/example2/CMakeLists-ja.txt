@@ -1,0 +1,6 @@
+cmake_minimum_required (VERSION 2.9)
+
+SET( x 3 )     # x = "3"
+SET( y 1 )     # y = "1"
+MESSAGE( x y ) # "xy"を表示
+MESSAGE( ${x}${y} ) # "31"を表示

@@ -25,7 +25,8 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[11pt,a4paper,landscape]{scrartcl} % 11pt font size
+%\documentclass[11pt,a4paper,landscape]{scrartcl} % 11pt font size
+\documentclass[11pt,a4paper,landscape]{ltjsarticle}
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
@@ -108,9 +109,9 @@ pdfkeywords={クロスプラットフォーム開発, オープンソース, CMa
 %% A small project could be organized like this: 
 CMakeは、クロスプラットフォームのソースコードプロジェクトを所与のプラットフォームに対して構築する方法を設定するためのツールです。
 
-  小さなプロジェクトは次のように編成できます。
+小さなプロジェクトは次のように構成されるでしょう。
 
-  \vspace{\baselineskip} % Whitespace before the next section
+\vspace{\baselineskip} % Whitespace before the next section
 
 \noindent\fbox{%
     \parbox{\columnwidth}{%
@@ -217,56 +218,90 @@ CMakeスクリプトにも変数があります。変数は, CMake, または, C
 変数に設定されている値を取得するためには, \codeword{${変数名}}を使用
 し, 変数名を値に置き換えます。
 
-\lstinputlisting[language=bash]{examples/example2/CMakeLists.txt}
+\lstinputlisting[language=bash]{examples/example2/CMakeLists-ja.txt}
 
-All variable values are a text string. Text strings can be evaluated as boolean expressions (e.g. when used in \codeword{IF()} and \codeword{WHILE()}). The values "FALSE", "OFF", "NO", or any string ending in "-NOTFOUND" evaluates be false - everything else to true.
+%% All variable values are a text string. Text strings can be
+%% evaluated as boolean expressions (e.g. when used in \codeword{IF()}
+%% and \codeword{WHILE()}). The values "FALSE", "OFF", "NO", or any
+%% string ending in "-NOTFOUND" evaluates be false - everything else
+%% to true. 
+すべての変数値は, テキスト文字列です。 テキスト文字列は,
+(\codeword{IF()}や\codeword{WHILE()}内で使用された場合, ) ブール評価式
+として評価されます。''FALSE'', ``OFF'', ``NO'', または, ``-NOTFOUND''
+で終わる文字列の評価値は, 偽になります。それ以外は, 真になります。
 
-Text strings can represent multiple values as a list by separating entities using a semicolon.
+%Text strings can represent multiple values as a list by separating
+%entities using a semicolon. 
+セミコロンで区切ってリストを指定することで, 複数の値を表すことができま
+す。
 
-\lstinputlisting[language=bash]{examples/example3/CMakeLists.txt}
+\lstinputlisting[language=bash]{examples/example3/CMakeLists-ja.txt}
 
-Lists can be iterated using the command \codeword{FOREACH (var val)}:
-
-\lstinputlisting[language=bash]{examples/example4/CMakeLists.txt}
+%Lists can be iterated using the command \codeword{FOREACH (var val)}:
+\codeword{FOREACH (変数 値)}コマンドを用いることでリストを反復すること
+ができます:
+\lstinputlisting[language=bash]{examples/example4/CMakeLists-ja.txt}
 			
-\sectiontitle{Exposing compile options}
+\sectiontitle{コンパイルオプションの公開}
 			
-CMake allows the end user (who runs CMake) to modify some values of some variables.  This is usually used to defined properties of the build such as locations of files, machine architecture, and string values.
+%% CMake allows the end user (who runs CMake) to modify some values of some variables.  This is usually used to defined properties of the build such as locations of files, machine architecture, and string values.
 
-The command \codeword{set(<variable> <value> CACHE <type> <docstring>)} set the variable to the default value - but allows the value to be changed by the cmake user when configuring the build. The type should be one of the following:
+（CMakeを実行する）エンドユーザーは, 変数の値を変更することができます。
+通常この機能は, ファイルの場所、マシンアーキテクチャ、文字列値など、構築に
+関する定義済みプロパティを変更するための変数の値を変更するために使用さ
+れます。
+
+
+%% The command \codeword{set(<variable> <value> CACHE <type>
+%% <docstring>)} set the variable to the default value - but allows
+%% the value to be changed by the cmake user when configuring the
+%% build. The type should be one of the following: 
+\codeword{set(<変数> <値> CACHE <型> <文書文字列>)}コマンドは, 変数を
+デフォルト値に設定しますが, 構築時にcmakeユーザーが設定値を変更で
+きるようにします。
+型は次のいずれかである必要があります:
 
 \begin{itemize}  
-\item FILEPATH = File chooser dialog.
-\item PATH     = Directory chooser dialog.
-\item STRING   = Arbitrary string.
-\item BOOL     = Boolean ON/OFF checkbox.
-\item INTERNAL = No GUI entry (used for persistent variables).
+\item FILEPATH = ファイル選択ダイアログ.
+\item PATH     = ディレクトリ選択ダイアログ.
+\item STRING   = 任意の文字列.
+\item BOOL     = ブール値を表す ON/OFF checkbox.
+\item INTERNAL = GUI エントリなし (永続変数として使用).
 \end{itemize}
 
-In the following example, the user can configure if "Hello" or an alternative string should be printed based on the configuration variables hello and other\_msg.
- 
-\lstinputlisting[language=bash]{examples/example5/CMakeLists.txt}
+%In the following example, the user can configure if "Hello" or an
+%alternative string should be printed based on the configuration
+%variables hello and other\_msg. 
+以下の例では, ``Hello''または, 設定用の変数 hello やother\_msgの内容に
+基づく代替文字列を表示するようにユーザが設定できるようにします。
+\lstinputlisting[language=bash]{examples/example5/CMakeLists-ja.txt}
 
-During configuration of the project, the CMake user gets prompted with the exposed options.
+%During configuration of the project, the CMake user gets prompted with the exposed options.
+プロジェクトの設定時に, CMakeは, 公開オプションをユーザに問い合わせま
+す。
 
 \includegraphics[width=\columnwidth]{variable-options}
 
-The values that the CMake user enters will be saved in the text file \codeword{CMakeCache.txt} as key-value pairs:
-
+%% The values that the CMake user enters will be saved in the text file \codeword{CMakeCache.txt} as key-value pairs:
+CMakeユーザが入力した値は, テキストファイル \codeword{CMakeCache.txt}
+にキーと値の組(key-value pair)として保存されます:
 \begin{lstlisting}[language=bash]
 // ....
-//Print hello
+//helloを表示
 hello:BOOL=OFF
 
-//Not hello value
+//hello以外の値
 other_msg:STRING=Guten tag
 // ....
 \end{lstlisting}
 
-\sectiontitle{Complex projects}
+\sectiontitle{複雑なプロジェクト}
 
-Some project both contains multiple executables and multiple libraries. For instance when having both unit tests and programs. It is common to separate these subprojects into subfolders. Example:
-
+%% Some project both contains multiple executables and multiple libraries. For instance when having both unit tests and programs. It is common to separate these subprojects into subfolders. Example:
+複数の実行形式と複数のライブラリを含むプロジェクトがあります。
+例えば, ユニットテストとプログラムの双方を持つような場合です。
+この場合, 各サブプロジェクトをサブフォルダに分割するのが普通です。
+例えば: 
 \vspace{\baselineskip} % Whitespace before the next section
 \noindent\fbox{%
     \parbox{\columnwidth}{%
@@ -281,27 +316,54 @@ someexe/main.cpp
 
 \vspace{\baselineskip} % Whitespace before the next section
 
-The main \codeword{CMakeLists.txt} contains the basic project settings but then includes the subprojects:
+%% The main \codeword{CMakeLists.txt} contains the basic project settings but then includes the subprojects:
+メイン\codeword{CMakeLists.txt}は, プロジェクトの基本的な設定を含み
+つつ, サブプロジェクトをインクルードします:
+\lstinputlisting[language=bash]{examples/example6/CMakeLists-ja.txt}
 
-\lstinputlisting[language=bash]{examples/example6/CMakeLists.txt}
+%First the library Foo is compiled from the source in the  \codeword{somelib} directory:
+最初のライブラリFooは, \codeword{somelib} ディレクトリ中のソースからコ
+ンパイルされます:
 
-First the library Foo is compiled from the source in the  \codeword{somelib} directory:
+\lstinputlisting[language=bash]{examples/example6/somelib/CMakeLists-ja.txt}
 
-\lstinputlisting[language=bash]{examples/example6/somelib/CMakeLists.txt}
+%% Finally, the executable Hello is compiled and linked to the Foo
+%% library - note that the target name is used here - not the actual
+%% path. Since the main.cpp references to header file Foo.hpp the
+%% somelib directory is added to the header search path: 
 
-Finally, the executable Hello is compiled and linked to the Foo library - note that the target name is used here - not the actual path. Since the main.cpp references to header file Foo.hpp the somelib directory is added to the header search path:
+最終的に, 実行形式Helloは, Fooライブラリをリンクするようにコンパイルさ
+れます。ターゲット名は, 実際のパスではなく, ここで使われることに注意し
+てください。main.cppは, ヘッダファイルFoo.hppを参照するため, somelibディレクト
+リをヘッダサーチパスに追加しています。 
 
-\lstinputlisting[language=bash]{examples/example6/someexe/CMakeLists.txt}
+\lstinputlisting[language=bash]{examples/example6/someexe/CMakeLists-ja.txt}
 
-\sectiontitle{Searching for source files}
+\sectiontitle{ソースファイルの検索}
 
-Use the \codeword{find(GLOB varname patterns)} to automatically search for files within a directory given one or more search patterns. Note that in the example below, both source files and header files are added to the project. This is not needed for compiling the project, but it is convenient when using an IDE since this also adds the header files to the project.
+%% Use the \codeword{find(GLOB varname patterns)} to automatically search
+%% for files within a directory given one or more search patterns. Note
+%% that in the example below, both source files and header files are
+%% added to the project. This is not needed for compiling the project,
+%% but it is convenient when using an IDE since this also adds the header
+%% files to the project. 
 
-\lstinputlisting[language=bash]{examples/example6-find/CMakeLists.txt}
+所定のディレクトリ内のファイル群を一つ以上の検索パターンに従って自動的
+に検索するためには\codeword{find(GLOB 変数名 パターン)}を使用します。
+以下の例でソースファイルとヘッダファイルの双方がプロジェクトに追加され
+ることに留意ください。これは, プロジェクトをコンパイルするためには不要
+ですが, ヘッダファイルもプロジェクトに追加するため, IDEを使用する場合に便利です。
 
-\sectiontitle{Runtime resources}
+\lstinputlisting[language=bash]{examples/example6-find/CMakeLists-ja.txt}
 
-Often runtime resources (such as DLLs, game-assets and text files) are read relative to the executable. One solution is to copy resources into the same directory as the executable. Example:
+%\sectiontitle{Runtime resources}
+\sectiontitle{実行時リソース}
+
+%% Often runtime resources (such as DLLs, game-assets and text files)
+%% are read relative to the executable. One solution is to copy
+%% resources into the same directory as the executable. Example: 
+(DLL, ゲームアセット(game-asset), および, テキストファイルのような)実
+行時リソースを実行形式に対する相対パスで読み込むことがあります。
 
 \vspace{\baselineskip} % Whitespace before the next section
 \noindent\fbox{%
@@ -312,37 +374,95 @@ someexe/res.txt
 }%
 }
 
-In this project, the source files assume that the resource is located in the same directory as the executable:
+%% In this project, the source files assume that the resource is
+%% located in the same directory as the executable: 
+このプロジェクトでは, ソースファイルは, リソースが実行形式と同じディレ
+クトリ内に配置されていることを想定しています。
 
 \lstinputlisting[language=c++]{examples/example7/someexe/main.cpp}
 
-The CMakeLists.txt make sure to copy the file. 
+%% The CMakeLists.txt make sure to copy the file. 
+このCMakeLists.txt はファイルがコピーされることを保証します。
 
-\lstinputlisting[language=bash]{examples/example7/CMakeLists.txt}
+\lstinputlisting[language=bash]{examples/example7/CMakeLists-ja.txt}
 
-Note: One problem with this approach is if you modify the original resources, then you need to run CMake again.
+%% Note: One problem with this approach is if you modify the original
+%% resources, then you need to run CMake again. 
+注意: このアプローチには, 元のリソースを修正した場合はCMakeを再実行し
+なければならないという問題があります。
 
-\sectiontitle{External libraries}
+%\sectiontitle{External libraries}
+\sectiontitle{外部ライブラリ}
 
-External libraries basically come in two flavors; dynamically linked libraries (DLLs) which are linked with the binary at runtime and statical linked libraries which are linked at compile time.
+%% External libraries basically come in two flavors; dynamically
+%% linked libraries (DLLs) which are linked with the binary at runtime
+%% and statical linked libraries which are linked at compile time.
+外部ライブラリには, 基本的に2つの種類があります。 つまり, バイナリの実
+行時にリンクされる動的リンクライブラリ(DLL)とコンパイル時にリンクされ
+る静的リンクライブラリです。 
 
-Static libraries have the most simple setup. To use one, the compiler needs to know the location of where to locate the header files and the linker need to know the location of the actual library. Unless the external libraries are distributed along with the project it is usually not possible to know their location - for this reason, it is common to use cached variables, where the CMake user can change the location. Static libraries have the file ending .lib on Windows and .a on most other platforms. 
+%% Static libraries have the most simple setup. To use one, the
+%% compiler needs to know the location of where to locate the header
+%% files and the linker need to know the location of the actual
+%% library. Unless the external libraries are distributed along with
+%% the project it is usually not possible to know their location - for
+%% this reason, it is common to use cached variables, where the CMake
+%% user can change the location. Static libraries have the file ending
+%% .lib on Windows and .a on most other platforms.  
 
-\lstinputlisting[language=bash]{examples/example8/CMakeLists.txt}
+静的ライブラリーのセットアップは最も単純です。
+これを使用するには、コンパイラーがヘッダーファイルの場所を知っている必
+要があり、リンカーは実際のライブラリの配置位置を知っている必要があります。
 
-Dynamically linked libraries work similar to statical linked libraries. On Windows, it is still needed to link to a library at compile time, but the actual linking to the DLL happens at compile time. The executable file needs to be able to find the DLL file in the runtime linkers search path. If the DLL is not a system library, an easy solution is to copy the DLL next to the executable. Working with DLL often requires platform specific actions, which CMake support using the built-in variables \codeword{WIN32}, \codeword{APPLE}, \codeword{UNIX}.
+外部ライブラリがプロジェクトと一緒に配布されない限り、通常、それらの場
+所を知ることはできません - このため、CMakeユーザーが場所を変更できるキャッ
+シュされた変数を使用するのが一般的です。
+静的ライブラリには、Windowsでは.lib、その他のほとんどのプラットフォー
+ムでは.aで終わるファイルです。
 
-\lstinputlisting[language=bash]{examples/example9/CMakeLists.txt}
+\lstinputlisting[language=bash]{examples/example8/CMakeLists-ja.txt}
 
-\sectiontitle{Automatically locating libraries}
+%% Dynamically linked libraries work similar to statical linked libraries. On Windows, it is still needed to link to a library at compile time, but the actual linking to the DLL happens at compile time. The executable file needs to be able to find the DLL file in the runtime linkers search path. If the DLL is not a system library, an easy solution is to copy the DLL next to the executable. Working with DLL often requires platform specific actions, which CMake support using the built-in variables \codeword{WIN32}, \codeword{APPLE}, \codeword{UNIX}.
 
-CMake also contains a feature to automatically find libraries (based on a number of suggested locations) using the command \codeword{find_package()}. However, this feature works best on macOS and Linux. 
+動的にリンクされたライブラリは、静的にリンクされたライブラリと同様に機
+能します。
+Windowsでは、コンパイル時にライブラリをリンクする必要がありますが、DLL
+への実際のリンクは実行時に行われます\footnote{訳注: 原文は, ``On
+  Windows, it is still needed to link to a library at compile time,
+  but the actual linking to the DLL happens at compile
+  time. ''(「Windowsでは、コンパイル時にライブラリにリンクする必要があ
+    りますが、DLLへの実際のリンクはコンパイル時に行われます。」)ですが,
+  ``the actual linking to the DLL happens at runtime.''(「DLLへの実際のリ
+  ンクは実行時に行われます。」)の誤記と思われます。}。
+実行可能ファイルは、実行時リンカーの検索パスからDLLファイルを検索でき
+る必要があります。
+DLLがシステムライブラリでない場合、簡単な解決策はDLLを実行可能ファイル
+の隣にコピーすることです。
+多くの場合、DLLの操作にはプラットフォーム固有の操作が必要になります。
+CMakeは, 組み込み変数\codeword {WIN32}、\codeword{APPLE}、
+\codeword{UNIX}によりこれらの操作を支援します。
+
+\lstinputlisting[language=bash]{examples/example9/CMakeLists-ja.txt}
+
+%\sectiontitle{Automatically locating libraries}
+\sectiontitle{ライブラリの自動配置}
+
+%% CMake also contains a feature to automatically find libraries
+%% (based on a number of suggested locations) using the command
+%% \codeword{find_package()}. However, this feature works best on
+%% macOS and Linux.
+
+CMakeには、\codeword{find_package()}コマンドを使用して、ライブラリを
+（推奨されるいくつかの場所に基づいて）自動的に検索する機能も含まれてい
+ます。 ただし、この機能はmacOSおよびLinuxで最も適切に機能します。
 
 \url{https://cmake.org/Wiki/CMake:How_To_Find_Libraries}.
 
-\sectiontitle{C++ version}
+%\sectiontitle{C++ version}
+\sectiontitle{C++のバージョン}
 
-The C++ version can be set using the commands:
+%The C++ version can be set using the commands:
+以下のコマンドでC++のバージョンを設定することが可能です:
 
 \begin{lstlisting}[language=bash]
 set(CMAKE_CXX_STANDARD 14)
@@ -350,9 +470,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 \end{lstlisting}
 
-\sectiontitle{Defining preprocessor symbols}
+%\sectiontitle{Defining preprocessor symbols}
+\sectiontitle{プリプロセッサシンボルの定義}
 
-Use the \codeword{add_definitions()} to add preprocessor symbols to the project.
+%Use the \codeword{add_definitions()} to add preprocessor symbols to
+%the project.
+プロジェクトにプリプロセッサシンボルを追加するには,
+\codeword{add_definitions()} を使用します。
 
 \begin{lstlisting}[language=bash]
 # ...
@@ -360,7 +484,9 @@ add_definitions(-DFOO=\"XXX\")
 add_definitions(-DBAR)
 \end{lstlisting}
 
-This will create the symbols \codeword{FOO} and \codeword{BAR}, which can be used in the source code:
+%% This will create the symbols \codeword{FOO} and \codeword{BAR}, which can be used in the source code:
+これにより, 次のようなソースコード中から使用可能な\codeword{FOO} と\codeword{BAR}と
+いうシンボルが生成されます:
 
 \begin{lstlisting}[language=c++]
 #include <iostream>
@@ -383,7 +509,7 @@ int main(){
 %	LINKS AND INFORMATION
 %----------------------------------------------------------------------------------------
 
-\sectiontitle{Links and information}
+\sectiontitle{外部リンクと情報}
 
 \url{https://cmake.org/Wiki/CMake/Language_Syntax}
 
@@ -398,14 +524,17 @@ int main(){
 {\color{mygray}\line(1,0){30}} % Print the line with a custom color
 
 \footnotesize{
-Created by Morten Nobel-Jørgensen, mnob@itu.dk, ITU, 2017\\ 
+%Created by Morten Nobel-Jørgensen, mnob@itu.dk, ITU, 2017\\ 
+Morten Nobel-Jørgensen(mnob@itu.dk, ITU, 2017)により執筆されました。\\ 
+%Released under the MIT license. \\
+MIT licenseによりリリースされています. \\
 
-Released under the MIT license. \\
-
-Latex template by John Smith, 2015\\ 
+%Latex template by John Smith, 2015\\
+本文書で使用されている{\LaTeX} のテンプレートは, 2015年にJohn Smithによるものです.\\ 
 \url{http://johnsmith.com/}\\
 				
-Released under the MIT license.
+%Released under the MIT license.
+MIT licenseによりリリースされています. 
 }
 
 %----------------------------------------------------------------------------------------

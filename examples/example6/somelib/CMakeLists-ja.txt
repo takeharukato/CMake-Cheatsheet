@@ -1,0 +1,4 @@
+# somelib/CMakeLists.txt
+
+# foo.cppをコンパイル, リンクする
+add_library(Foo STATIC foo.cpp)

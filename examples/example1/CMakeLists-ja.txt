@@ -1,0 +1,7 @@
+cmake_minimum_required (VERSION 2.9)
+
+# プロジェクト名の設定
+project (HelloProject)
+
+# main.cppとfoo.cppをコンパイル, リンクし, Helloという実行形式を生成
+add_executable(Hello src/main.cpp src/foo.cpp)
